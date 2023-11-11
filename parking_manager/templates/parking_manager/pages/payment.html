@@ -3,7 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/css/payment.css" />
     <title>Payment</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Payment Page</h1>
+
+    <p>Card Number</p>
+    <input
+      type="text"
+      placeholder="Enter your card number"
+      style="width: 626px"
+    />
+
+    <div id="expiration">
+      <p>Expiration</p>
+      <div class="gap">
+        <input type="text" placeholder="Month" style="width: 156px" />
+        <input type="text" placeholder="Year" />
+        <input type="text" placeholder="Month" />
+      </div>
+    </div>
+    <div style="margin-top: 60px">
+      <button>Submit</button>
+    </div>
+  </body>
 </html>
