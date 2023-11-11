@@ -1,0 +1,19 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20vh 0;
+    background-color: #ff0000; /* Set background color to bright red */
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: #666;
+    font-size: 1.2em;
+  }
