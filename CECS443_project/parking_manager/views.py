@@ -23,5 +23,5 @@ def res_mod_confirmation():
 def res_modification():
     return
 
-def reservation():
+def reservation(request):
     return
