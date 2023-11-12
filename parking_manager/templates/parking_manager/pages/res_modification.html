@@ -3,7 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/css/res_cancellation.css" />
     <title>Res Modification</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Modify a Reservation</h1>
+    <p style="font-size: 24px">
+      Please confirm the reservation you would like to cancel by filling the
+      information below.
+    </p>
+
+    <p>Parking Number</p>
+    <input
+      type="text"
+      placeholder="Choose parking number"
+      style="width: 626px"
+    />
+
+    <p>License Plate</p>
+    <input
+      type="text"
+      placeholder="Enter your license plate"
+      style="width: 626px"
+    />
+
+    <div id="date">
+      <p>Date</p>
+      <div class="gap">
+        <input type="text" placeholder="Month" />
+        <input type="text" placeholder="Year" />
+        <input type="text" placeholder="Month" />
+      </div>
+    </div>
+
+    <div style="margin-top: 40px">
+      <button>Next</button>
+    </div>
+  </body>
 </html>

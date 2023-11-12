@@ -11,4 +11,7 @@ urlpatterns = [
     path("res_mod_confirmation", views.res_mod_confirmation, name="res_mod_confirmation"),
     path("res_modification", views.res_modification, name="res_modification"),
     path("reservation", views.reservation, name="reservation"),
+    path("res_modification_detail", views.res_modification_detail, name="res_modification_detail"),
+
+
 ]
