@@ -28,3 +28,8 @@ def reservation(request):
 def res_modification_detail(request):
     return render(request, 'parking_manager/pages/res_modification_detail.html')
 
+def view_parking_request(request):
+    return render(request, 'parking_manager/pages/view_parking_request.html')
+
+def view_parking(request):
+    return render(request, 'parking_manager/pages/view_parking.html')
