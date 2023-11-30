@@ -4,42 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="static/css/res_cancellation.css" />
-    <title>Res Cancellation</title>
+    <title>Res Modification</title>
   </head>
   <body>
-    <h1>Cancel a Reservation</h1>
+    <h1>Modify a Reservation</h1>
     <p style="font-size: 24px">
       Please confirm the reservation you would like to cancel by filling the
       information below.
     </p>
 
-    <p>Parking Number</p>
+    <p>Please Enter Your Confirmation Code</p>
+    <form action = "/res_cancellation" method ="post">
+      {% csrf_token %}
     <input
       type="text"
-      placeholder="Choose parking number"
+      placeholder="Confirmation Code Here"
       style="width: 626px"
+      name = 'Code'
     />
 
-    <p>License Plate</p>
-    <input
-      type="text"
-      placeholder="Enter your license plate"
-      style="width: 626px"
-    />
 
-    <div id="date">
-      <p>Date</p>
-      <div class="gap">
-        <input type="text" placeholder="Month" />
-        <input type="text" placeholder="Year" />
-        <input type="text" placeholder="Month" />
-      </div>
     </div>
 
     <div style="margin-top: 40px">
-      <button onclick="location.href ='/res_cancel_confirmation'">
-        Submit
-      </button>
+      <button type="submit" onclick=" location.href ='/res_modification_detail'">Next</button>
+    </form>
     </div>
   </body>
 </html>

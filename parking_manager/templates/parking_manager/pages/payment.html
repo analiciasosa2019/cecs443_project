@@ -8,12 +8,14 @@
   </head>
   <body>
     <h1>Payment Page</h1>
-
+    <form action = "/payment" method ="post">
+      {% csrf_token %}
     <p>Card Number</p>
     <input
       type="text"
       placeholder="Enter your card number"
       style="width: 626px"
+      name = 'Card_Num'
     />
 
     <div id="expiration">
@@ -25,7 +27,8 @@
       </div>
     </div>
     <div style="margin-top: 60px">
-      <button onclick="location.href ='/res_confirmation'">Submit</button>
+      <button  type="submit"  onclick="location.href ='/res_confirmation'">Submit</button>
+    </form>
     </div>
   </body>
 </html>

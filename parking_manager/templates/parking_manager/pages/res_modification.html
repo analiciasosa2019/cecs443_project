@@ -9,35 +9,26 @@
   <body>
     <h1>Modify a Reservation</h1>
     <p style="font-size: 24px">
-      Please confirm the reservation you would like to cancel by filling the
+      Please confirm the reservation you would like to modify by filling the
       information below.
     </p>
 
-    <p>Parking Number</p>
+    <p>Please Enter Your Confirmation Code</p>
+    <form action = "/res_modification" method ="post">
+      {% csrf_token %}
     <input
       type="text"
-      placeholder="Choose parking number"
+      placeholder="Confirmation Code Here"
       style="width: 626px"
+      name = 'Code'
     />
 
-    <p>License Plate</p>
-    <input
-      type="text"
-      placeholder="Enter your license plate"
-      style="width: 626px"
-    />
 
-    <div id="date">
-      <p>Date</p>
-      <div class="gap">
-        <input type="text" placeholder="Month" />
-        <input type="text" placeholder="Year" />
-        <input type="text" placeholder="Month" />
-      </div>
     </div>
 
     <div style="margin-top: 40px">
-      <button onclick="location.href ='/res_modification_detail'">Next</button>
+      <button type="submit" onclick=" location.href ='/res_modification_detail'">Next</button>
+    </form>
     </div>
   </body>
 </html>
