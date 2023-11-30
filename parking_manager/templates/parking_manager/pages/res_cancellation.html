@@ -7,7 +7,7 @@
     <title>Res Modification</title>
   </head>
   <body>
-    <h1>Modify a Reservation</h1>
+    <h1>Cancel a Reservation</h1>
     <p style="font-size: 24px">
       Please confirm the reservation you would like to cancel by filling the
       information below.
@@ -19,15 +19,21 @@
     <input
       type="text"
       placeholder="Confirmation Code Here"
-      style="width: 626px"
+      style="width: 626px;margin : 10px"
       name = 'Code'
+      required
     />
-
-
+    <input
+      type="text"
+      placeholder="PIN"
+      style="width: 62px;margin : 10px"
+      name = 'PIN'
+      required
+    />
     </div>
 
     <div style="margin-top: 40px">
-      <button type="submit" onclick=" location.href ='/res_modification_detail'">Next</button>
+      <button type="submit" onclick=" location.href ='/res_cancel_confirmation'">Next</button>
     </form>
     </div>
   </body>
