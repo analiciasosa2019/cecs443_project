@@ -11,23 +11,27 @@
 
     <div id="name">
       <p>Name</p>
+      <form action = "/reservation" method ="post">
+        {% csrf_token %}
       <div class="gap">
-        <input type="text" placeholder="First name" />
-        <input type="text" placeholder="Last name" />
+        <input type="text" placeholder="First name" name = 'First_Name' required/>
+        <input type="text" placeholder="Last name"  name = 'Last_Name' required/>
       </div>
     </div>
 
     <div style="margin-top: 24px">
       <p>Email</p>
-      <input type="text" placeholder="Enter your email" style="width: 626px" />
+      <input type="text" placeholder="Enter your email" style="width: 626px" name = 'Email' required/>
     </div>
 
     <div style="margin-top: 24px">
       <p>Parking Number</p>
       <input
-        type="text"
+        type="number"
         placeholder="Choose parking number"
         style="width: 626px"
+        name = 'Park_Num'
+        required
       />
     </div>
 
@@ -37,11 +41,41 @@
         type="text"
         placeholder="Enter your license plate"
         style="width: 626px"
+        name = 'License'
+        required
       />
     </div>
 
+    <div id="date">
+      <p>Date</p>
+      <div class="gap">
+        <input type="number" placeholder="Month" name = 'Month' min="1" max = "12" required/>
+        <input type="number" placeholder="Day" name = 'Day' min="1" max="31"/>
+        <input type="number" placeholder="Year" name = 'Year' min="2023" required/>
+      </div>
+    </div>
+
+    <p>Card Number</p>
+    <input
+      type="number"
+      placeholder="Enter your card number"
+      style="width: 626px"
+      name = 'Card_Num'
+      required
+    />
+
+    <div id="expiration">
+      <p>Expiration</p>
+      <div class="gap">
+        <input type="number" placeholder="Month" name = 'Card_M' min="1" max = "12" required/>
+        <input type="number" placeholder="Day" name = 'Card_D' min="1" max="31"/>
+        <input type="number" placeholder="Year" name = 'Card_Y' min="2023" required/>
+      </div>
+    </div>
+
     <div style="margin-top: 56px">
-      <button onclick="location.href ='/payment'">Next</button>
+      <button type= "submit" location.href ='/payment'>Submit</button>
+    </form>
     </div>
   </body>
 </html>
