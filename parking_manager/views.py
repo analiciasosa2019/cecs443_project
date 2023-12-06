@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 import pyrebase
 from email.message import EmailMessage
@@ -72,8 +73,28 @@ def res_modification(request):
             print(pin, type(pin))
             if pin_in_db != pin:
                 return render(request, 'parking_manager/pages/res_modification_rejection.html')
-            database.child(code).remove()
-            return render(request, 'parking_manager/pages/res_modification_detail.html')
+            context = {}
+            context['First_Name'] = database.child(code).child('First_Name').get().val()
+            context['Last_Name'] = database.child(code).child('Last_Name').get().val()
+            context['Email'] = database.child(code).child('Email').get().val()
+            context['License'] = database.child(code).child('License').get().val()
+            context['Park_Num'] = database.child(code).child('Park_Num').get().val()
+            date = database.child(code).child('Date').get().val()
+            month, day, year = map(int, date.split('/'))
+            context['Day'] = day
+            context['Month'] = month
+            context['Year'] = year
+            
+            context['Card_Num'] = database.child(code).child('Payment').child('Card_Num').get().val()
+            
+            exp_date = database.child(code).child('Payment').child('EXP').get().val()
+            cmonth, cyear = map(int, exp_date.split('/'))
+            
+            context['cMonth'] = cmonth
+            context['cYear'] = cyear
+            
+            
+            return render(request, 'parking_manager/pages/res_modification_detail.html', context)
     return render(request, 'parking_manager/pages/res_modification.html')
 
 def reservation(request):
@@ -97,10 +118,10 @@ def reservation(request):
         card_num = request.POST['Card_Num']
         cyear = request.POST['Card_Y']
         cmonth = request.POST['Card_M']
-        cday = request.POST['Card_D']
+        
         
         date = str(month) + "/" + str(day) + "/" + str(year)
-        cdate = str(cmonth) + "/" + str(cday) + "/" + str(cyear)
+        cdate = str(cmonth)  + "/" + str(cyear)
         # h = hash(date + str(pn)) 
         ch = str(month) +str(day)  + str(year) + str(pn)
 
@@ -132,6 +153,32 @@ def reservation(request):
             return render(request, 'parking_manager/pages/res_rejection_spottaken.html')
     return render(request, 'parking_manager/pages/reservation.html')
 
+def view_parking_request(request):
+    print("checkdate action")
+    x = database.child().get().val()
+    dates = list(x.values())
+    current_spots = len(dates)
+    list_dates = []
+    for i in dates:
+        list_dates.append(i['Date'])
+    
+        
+    if request.method == 'POST':
+        print("posted")
+        beef = 0
+        year = request.POST['Year']
+        month = request.POST['Month']
+        day = request.POST['Day']
+        date = str(month) + "/" + str(day) + "/" + str(year)
+    
+        for i in list_dates:
+            if i == date:
+                beef+= 1
+                print(beef)
+        available_spots = max_spots - beef
+        context = {'date': date, 'available_spots': available_spots}
+        return render(request, 'parking_manager/pages/view_parking.html', context)
+    return render(request, 'parking_manager/pages/view_parking_request.html')
 def is_spot_taken(date, spot):
     return
 
@@ -144,6 +191,7 @@ def res_modification_detail(request):
         for i in dates:
             list_dates.append(i['Date'])
         if request.method == 'POST':
+            
             #print(request.POST['First_Name'])
             ln = request.POST['Last_Name']
             email = request.POST['Email']
@@ -157,16 +205,16 @@ def res_modification_detail(request):
             card_num = request.POST['Card_Num']
             cyear = request.POST['Card_Y']
             cmonth = request.POST['Card_M']
-            cday = request.POST['Card_D']
+           
             
             date = str(month) + "/" + str(day) + "/" + str(year)
-            cdate = str(cmonth) + "/" + str(cday) + "/" + str(cyear)
+            cdate = str(cmonth) + "/" + str(cyear)
             # h = hash(date + str(pn)) 
             ch = str(month) +str(day)  + str(year) + str(pn)
 
-        valiDATE(date)
-
-        if not database.child(ch).shallow().get().val():
+            valiDATE(date)
+            
+            
             parking_pin = random.randint(1000,9999)
             pay = {'Card_Num': card_num, 'EXP': cdate}
             data = {'First_Name': fn , 'Last_Name': ln, 'Date': date, 'Email' : email, 'License' : li, 'Payment' : "",
@@ -181,19 +229,15 @@ def res_modification_detail(request):
                 return render(request, 'parking_manager/pages/res_rejection_lotful.html')
                 
             
-            
+            database.child(ch).remove()
             database.child(ch).set(data)
             print("hmm")
             
             sendConf(email, ch, parking_pin)
             return render(request, 'parking_manager/pages/res_mod_confirmation.html')
-        else:
-            print("Already Taken")
-            return render(request, 'parking_manager/pages/res_modification_detail.html')
+            
     return render(request, 'parking_manager/pages/res_modification_detail.html')
 
-def view_parking_request(request):
-    return render(request, 'parking_manager/pages/view_parking_request.html')
 
 def view_parking(request):
     return render(request, 'parking_manager/pages/view_parking.html')

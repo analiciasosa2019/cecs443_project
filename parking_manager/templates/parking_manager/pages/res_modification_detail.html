@@ -14,24 +14,26 @@
       <form action = "/res_modification_detail" method ="post">
         {% csrf_token %}
       <div class="gap">
-        <input type="text" placeholder="First name" name = 'First_Name' required/>
-        <input type="text" placeholder="Last name"  name = 'Last_Name' required/>
+        <input type="text" placeholder={{First_Name}} value={{First_Name}} name = 'First_Name' required/>
+        <input type="text" placeholder={{Last_Name}} value={{Last_Name}} name = 'Last_Name' required/>
       </div>
     </div>
 
     <div style="margin-top: 24px">
       <p>Email</p>
-      <input type="text" placeholder="Enter your email" style="width: 626px" name = 'Email' required/>
+      <input type="text" placeholder={{Email}} value={{Email}} style="width: 626px" name = 'Email' required/>
     </div>
 
     <div style="margin-top: 24px">
       <p>Parking Number</p>
       <input
         type="number"
-        placeholder="Choose parking number"
+        placeholder={{Park_Num}}
+        value = {{Park_Num}}
         style="width: 626px"
         name = 'Park_Num'
         required
+        readonly
       />
     </div>
 
@@ -39,26 +41,29 @@
       <p>License Plate</p>
       <input
         type="text"
-        placeholder="Enter your license plate"
+        placeholder={{License}}
+        value={{License}}
         style="width: 626px"
         name = 'License'
         required
+        
       />
     </div>
 
     <div id="date">
       <p>Date</p>
       <div class="gap">
-        <input type="number" placeholder="Month" name = 'Month' min="1" max = "12" required/>
-        <input type="number" placeholder="Day" name = 'Day' min="1" max="31"/>
-        <input type="number" placeholder="Year" name = 'Year' min="2023" required/>
+        <input type="number" placeholder="Month" value={{Month}} name = 'Month' min="1" max = "12" required/>
+        <input type="number" placeholder="Day" value={{Day}} name = 'Day' min="1" max="31"/>
+        <input type="number" placeholder="Year" value={{Year}} name = 'Year' min="2023" required/>
       </div>
     </div>
 
     <p>Card Number</p>
     <input
       type="number"
-      placeholder="Enter your card number"
+      placeholder={{Card_Num}}
+      value={{Card_Num}}
       style="width: 626px"
       name = 'Card_Num'
       required
@@ -67,9 +72,9 @@
     <div id="expiration">
       <p>Expiration</p>
       <div class="gap">
-        <input type="number" placeholder="Month" name = 'Card_M' min="1" max = "12" required/>
-        <input type="number" placeholder="Day" name = 'Card_D' min="1" max="31"/>
-        <input type="number" placeholder="Year" name = 'Card_Y' min="2023" required/>
+        <input type="number" placeholder="cMonth" value={{cMonth}} name = 'Card_M' min="1" max = "12" required/>
+        
+        <input type="number" placeholder="cYear" value={{cYear}} name = 'Card_Y' min="2023" required/>
       </div>
     </div>
 

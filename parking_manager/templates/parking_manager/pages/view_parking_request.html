@@ -3,21 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="static/css/view.css" />
+    <link rel="stylesheet" href="static/css/parking_request.css" />
     <title>View Parking Availability</title>
   </head>
   <body>
     <h1>View Parking Availability</h1>
-    <div id="date">
-      <p>Date</p>
-      <div class="gap">
-        <input type="number" placeholder="Month" name = 'Month' min="1" max = "12" required/>
-        <input type="number" placeholder="Day" name = 'Day' min="1" max="31"/>
-        <input type="number" placeholder="Year" name = 'Year' min="2023" required/>
+    <form action="/view_parking_request" method="post">
+      {% csrf_token %}
+      <div id="date">
+        <p>Date</p>
+        <div class="gap">
+          <input
+            type="number"
+            placeholder="Month"
+            name="Month"
+            min="1"
+            max="12"
+            required
+          />
+          <input type="number" placeholder="Day" name="Day" min="1" max="31" />
+          <input
+            type="number"
+            placeholder="Year"
+            name="Year"
+            min="2023"
+            required
+          />
+        </div>
       </div>
-    </div>
-    <div style="margin-top: 40px">
-    <button onclick="location.href ='view_parking'">Next</button>
-    </div>
+      <div style="margin-top: 40px">
+        <button type="submit" location.href="view_parking">Next</button>
+      </div>
+    </form>
   </body>
 </html>

@@ -14,5 +14,5 @@ urlpatterns = [
     path("res_modification_detail", views.res_modification_detail, name="res_modification_detail"),
     path("view_parking_request", views.view_parking_request, name="view_parking_request"),
     path("view_parking", views.view_parking, name="view_parking")
-
+    
 ]
