@@ -66,11 +66,12 @@ def res_modification(request):
      
         if not database.child(code).shallow().get().val() or code == "":
             print("users does not exist")
+            
         else:
-            print("users exist")
+            #print("users exist")
             pin_in_db = str(database.child(code).child('Pin Number').get().val())
-            print(pin_in_db, type(pin_in_db))
-            print(pin, type(pin))
+            #print(pin_in_db, type(pin_in_db))
+            #print(pin, type(pin))
             if pin_in_db != pin:
                 return render(request, 'parking_manager/pages/res_modification_rejection.html')
             context = {}
@@ -137,24 +138,24 @@ def reservation(request):
             for i in list_dates:
                 if i == date:
                     beef+= 1
-                    print(beef)
+                   # print(beef)
             if beef >= max_spots -1:
                 return render(request, 'parking_manager/pages/res_rejection_lotful.html')
                 
             
             
             database.child(ch).set(data)
-            print("hmm")
+           # print("hmm")
             
             sendConf(email, ch, parking_pin)
             return render(request, 'parking_manager/pages/res_confirmation.html')
         else:
-            print("Already taken")
+            #print("Already taken")
             return render(request, 'parking_manager/pages/res_rejection_spottaken.html')
     return render(request, 'parking_manager/pages/reservation.html')
 
 def view_parking_request(request):
-    print("checkdate action")
+    #print("checkdate action")
     x = database.child().get().val()
     dates = list(x.values())
     current_spots = len(dates)
@@ -164,7 +165,7 @@ def view_parking_request(request):
     
         
     if request.method == 'POST':
-        print("posted")
+        #print("posted")
         beef = 0
         year = request.POST['Year']
         month = request.POST['Month']
@@ -174,7 +175,7 @@ def view_parking_request(request):
         for i in list_dates:
             if i == date:
                 beef+= 1
-                print(beef)
+                #print(beef)
         available_spots = max_spots - beef
         context = {'date': date, 'available_spots': available_spots}
         return render(request, 'parking_manager/pages/view_parking.html', context)
@@ -241,6 +242,7 @@ def res_modification_detail(request):
 
 def view_parking(request):
     return render(request, 'parking_manager/pages/view_parking.html')
+
 def sendConf(email, hsh, pin):
         sender = "hankbank891@gmail.com"
         password = "tpdb eteh qcdx spep"
